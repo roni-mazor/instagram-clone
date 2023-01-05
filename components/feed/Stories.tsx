@@ -20,10 +20,10 @@ export default function Stories() {
         }))
         setStoryUsers(storyUsers)
     }, [])
-    console.log(storyUsers)
+
     return (
         <>
-            <div className="flex space-x-1 p-2 b-white mt-8 border-gray-200 border-[1px] overflow-x-scroll rounded-sm scrollbar-none">
+            <div className="flex space-x-1 p-2 b-white mt-8 border-gray-200 border-[1px] overflow-x-scroll rounded-sm scrollbar-none bg-white">
                 {storyUsers.map(({ img, username, id }) => (<article className="w-[40px] cursor-pointer" key={id}>
                     <img className=" p-[1px] rounded-full border-2 border-red-500 hover:scale-110" src={img} alt="" />
                     <p className="text-[10px] font-medium truncate">{username}</p>
