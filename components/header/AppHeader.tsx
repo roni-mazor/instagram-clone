@@ -10,7 +10,7 @@ export default function AppHeader() {
     }
 
     return (
-        <header className="sticky top-0  shadow-sm border-b-[1px] z-30">
+        <header className="bg-white sticky top-0  shadow-sm border-b-[1px] z-30">
             <div className="flex px-3 py-4 justify-between items-center m-auto max-w-6xl">
 
                 <Image style={{ objectFit: 'cover' }} className="hidden sm:block" alt="instagram logo" width="120" height="40"
