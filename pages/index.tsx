@@ -1,9 +1,13 @@
+import { ClientSafeProvider, getProviders } from 'next-auth/react'
+import { useState, createContext } from "react";
 import Head from 'next/head'
 import Feed from '../components/feed/Feed'
 import AppHeader from '../components/header/AppHeader'
 
+export const providersContext = createContext<ClientSafeProvider | null>(null)
 
-export default function Home() {
+export default function Home({ providers }: { providers: ClientSafeProvider[] }) {
+  const provider = Object.values(providers)[0]
   return (
     <>
       <Head>
@@ -12,12 +16,24 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="bg-gray-50 min-h-screen">
+      <providersContext.Provider value={provider}>
 
-        <AppHeader />
-        <Feed  />
-      </div>
+        <div className="bg-gray-50 min-h-screen">
+
+          <AppHeader />
+          <Feed />
+        </div>
+
+      </providersContext.Provider>
 
     </>
   )
+}
+
+
+export async function getServerSideProps() {
+  const providers = await getProviders()
+  return {
+    props: { providers }
+  }
 }

@@ -1,21 +1,40 @@
-import { useSession, signIn, signOut } from 'next-auth/react'
+import { useSession, signIn, signOut, getProviders, ClientSafeProvider } from 'next-auth/react'
+import { useRouter } from "next/router";
+import { useContext } from 'react';
+import { providersContext } from '../../pages';
+import { FcGoogle } from 'react-icons/fc'
 
 
-interface Props {
-    className?: string
-}
-export default function UserPreview({ className }: Props) {
+export default function UserPreview() {
     const { data: session } = useSession()
-    if (session) {
-        return (
+    const router = useRouter()
+    const provider = useContext(providersContext)
+
+    if (!provider) return <></>
+
+    return session ?
+        (
             <>
-                <img className={`${className} rounded-full h-10 w-10 hover:bg-gray-200 p-1 cursor-pointer`} onClick={() => signOut()} src={session?.user?.image!} alt="Sign out" />
+                <img className={` rounded-full h-10 w-10 hover:bg-gray-200 p-1 cursor-pointer`} onClick={() => signOut()} src={session?.user?.image!} alt="Sign out" />
+            </>
+        ) :
+        (
+            <>
+
+                <button className="bg-slate-100 text-gray-400 font-medium rounded-lg px-2 py-2 hover:brightness-80 ring-1 hover:shadow-md flex items-center space-x-2"
+                    onClick={() => signIn(provider.id, { callbackUrl: '/' })}>
+                    <span>
+                        Sign in
+                    </span>
+                    <span className="relative top-[2px]">
+                        <FcGoogle />
+                    </span>
+                </button>
             </>
         )
-    }
-    return (
-        <>
-            <button className={`${className} bg-blue-500 text-white font-medium rounded-md px-4 py-2 hover:brightness-105 hover:shadow-md whitespace-nowrap `} onClick={() => signIn()}>Sign in</button>
-        </>
-    )
+
+
 }
+
+
+

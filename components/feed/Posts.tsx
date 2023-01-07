@@ -20,7 +20,7 @@ export default function Posts() {
 
     return (
         <ul>
-            {posts.map(({ id, username, userImg, img, caption, }) => <Post id={id} username={username} userImg={userImg} img={img} caption={caption} key={id} />)}
+            {posts.map(({ id, username, userImg, img, caption, }) => <Post key={id} id={id} username={username} userImg={userImg} img={img} caption={caption} />)}
         </ul>
     )
 }

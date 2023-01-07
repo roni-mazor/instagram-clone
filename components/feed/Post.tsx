@@ -5,10 +5,9 @@ interface Props {
     userImg: string,
     img: string,
     caption: string,
-    key: string
 }
 
-export default function Post({ id, username, userImg, img, caption, key }: Props) {
+export default function Post({ id, username, userImg, img, caption }: Props) {
 
 
     return (
