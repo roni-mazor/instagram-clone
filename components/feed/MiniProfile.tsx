@@ -5,7 +5,7 @@ export default function MiniProfile() {
     return (
         <div className="flex items-center mt-[14px] ml-[10px] p-2 justify-between">
             {(session?.user) && <>
-                <img src={session.user.image ?? ''} className="h-12 w-12 rounded-full object-cover border p-[2px]" alt="" />
+                <img src={session.user.image ?? ''} className="h-12 w-12 rounded-full object-cover ring-1 ring-gray-200 p-[2px]" alt="" />
                 <div className="flex-1 ml-3">
                     <h2 className="font-bold">{session.user.name}</h2>
                     <h3 className="text-sm text-gray-400">Welcome to Instagrar</h3>

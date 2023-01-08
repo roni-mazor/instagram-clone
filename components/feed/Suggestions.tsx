@@ -31,7 +31,7 @@ export default function Suggestions() {
             <ul className="w-full">
                 {suggestions.map(({ img, username, id, title }) => (
                     <li key={id} className="w-full flex items-center mt-[3px] p-2 justify-between">
-                        <img src={img} className="h-8 w-8 rounded-full object-cover border p-[2px]" alt="" />
+                        <img src={img} className="h-8 w-8 rounded-full object-cover ring-1 ring-gray-200 p-[2px]" alt="" />
                         <div className="flex-1 ml-3 truncate">
                             <h2 className="font-semibold text-sm ">{username}</h2>
                             <h3 className="text-sm text-gray-400 truncate">{title}</h3>

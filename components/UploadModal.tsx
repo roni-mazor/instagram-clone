@@ -16,7 +16,8 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        zIndex: 100
+        zIndex: 100,
+        padding: '15px'
     },
 };
 
@@ -51,7 +52,7 @@ export default function UploadModal() {
             caption,
             username: session?.user.name,
             userImg: session?.user.image,
-            timestamp: serverTimestamp()
+            timestamp: serverTimestamp(),
         })
 
         if (uploadedImg) {
@@ -61,14 +62,6 @@ export default function UploadModal() {
             await updateDoc(doc(db, 'posts', docRef.id), {
                 image: downloadUrl
             })
-            // await uploadString(imageRef, uploadedImg, "data_url").then(
-            //     async (snapshot) => {
-            //         const downloadUrl = await getDownloadURL(imageRef)
-            //         await updateDoc(doc(db, 'posts', docRef.id), {
-            //             image: downloadUrl
-            //         })
-            //     }
-            // )
             closeModal()
         }
 
@@ -86,14 +79,15 @@ export default function UploadModal() {
             >
 
                 <form className="flex flex-col items-center w-80 space-y-3 relative">
-                    <button className="absolute top-[-15px] right-[-15px] text-gray-400 text-xl hover:brightness-90" onClick={closeModal}><AiFillCloseCircle /></button>
-                    {!!uploadedImg ? <img className="w-full mx-h-[250px] object-cover cursor-pointer" title="Remove image" src={uploadedImg} onClick={() => setUploadedImg(undefined)} /> : <label className="rounded-full bg-red-100 p-2 hover:brightness-95">
-                        <AiFillCamera className="text-red-400 text-2xl" />
-                        <input onChange={onImgUpload} type="file" hidden />
-                    </label>}
+                    <button className="absolute top-[-11px] right-[-11px] text-gray-400 text-xl hover:brightness-90" onClick={closeModal}><AiFillCloseCircle /></button>
+                    {!!uploadedImg ? <img className=" max-h-[290px] object-contain m-0  cursor-pointer" title="Remove image" src={uploadedImg} onClick={() => setUploadedImg(undefined)} /> :
+                        <label className="rounded-full bg-red-100 p-2 hover:brightness-95">
+                            <AiFillCamera className="text-red-400 text-2xl" />
+                            <input onChange={onImgUpload} type="file" hidden />
+                        </label>}
                     <input type="text" value={caption} onChange={(e) => setCaption(e.target.value)} placeholder="Write your caption" className=" text-center focus:outline-none w-ful" />
                     <button disabled={!caption || !uploadedImg} onClick={uploadPost}
-                        className="w-full bg-gray-200 text-gray-400 p-2 font-semibold rounded-md hover:brightness-95 disabled:opacity-80 disabled:cursor-not-allowed">Upload Post</button>
+                        className="w-full bg-gray-200 text-gray-400 p-2 font-semibold rounded-md hover:brightness-95 disabled:opacity-60 disabled:cursor-not-allowed">Upload Post</button>
                 </form>
             </Modal>
         </div>

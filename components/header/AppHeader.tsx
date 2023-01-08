@@ -8,6 +8,7 @@ export default function AppHeader() {
     const search = (e: FormEvent) => {
         e.preventDefault()
     }
+   
 
     return (
         <header className="bg-white sticky top-0  shadow-sm border-b-[1px] z-30">
