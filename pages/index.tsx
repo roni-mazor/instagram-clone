@@ -3,10 +3,22 @@ import { useState, createContext } from "react";
 import Head from 'next/head'
 import Feed from '../components/feed/Feed'
 import AppHeader from '../components/header/AppHeader'
+// import {
+//   RecoilRoot,
+//   atom,
+//   selector,
+//   useRecoilState,
+//   useRecoilValue,
+// } from 'recoil';
+import UploadModal from '../components/UploadModal';
+import { modalState } from '../atom/modalAtom';
 
 export const providersContext = createContext<ClientSafeProvider | null>(null)
 
+
+
 export default function Home({ providers }: { providers: ClientSafeProvider[] }) {
+  // const [isOpen, setIsOpen] = useRecoilState(modalState)
   const provider = Object.values(providers)[0]
   return (
     <>
@@ -18,11 +30,12 @@ export default function Home({ providers }: { providers: ClientSafeProvider[] })
       </Head>
       <providersContext.Provider value={provider}>
 
-        <div className="bg-gray-50 min-h-screen">
+          <div className="bg-gray-50 min-h-screen" >
 
-          <AppHeader />
-          <Feed />
-        </div>
+            <AppHeader />
+            <Feed />
+            <UploadModal />
+          </div>
 
       </providersContext.Provider>
 
