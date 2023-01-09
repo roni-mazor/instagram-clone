@@ -9,7 +9,6 @@ interface Props {
 
 export default function PostComment({ comment }: Props) {
 
-    console.log('once comment', comment.userName)
     return (
         <li className="flex space-x-1 text-sm px-4 py-1 text-gray-900 items-center">
             <img src={comment.userImage} className="h-8 w-8 rounded-full object-cover ring-1 ring-gray-200 p-[2px]" alt="user image" />
